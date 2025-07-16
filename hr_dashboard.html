@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>HR Dashboard</h2>
+<a href="/seed-roles" class="btn btn-warning">Seed Sample Roles</a>
+<hr>
+{% for v in volunteers %}
+  <h4>{{ v.name }} ({{ v.skills }})</h4>
+  <ul>
+    {% for role, score in matches[v.id] %}
+      <li>{{ role }} – Match Score: {{ score }}</li>
+    {% endfor %}
+  </ul>
+  <hr>
+{% endfor %}
+{% endblock %}
