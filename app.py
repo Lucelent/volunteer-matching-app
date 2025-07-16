@@ -11,6 +11,11 @@ db.init_app(app)
 with app.app_context():
     db.create_all()
 
+# ✅ NEW: Homepage redirects to Volunteer Portal
+@app.route('/')
+def home():
+    return redirect('/volunteer')
+
 @app.route('/volunteer', methods=['GET', 'POST'])
 def volunteer():
     if request.method == 'POST':
@@ -35,7 +40,7 @@ def edit_volunteer(volunteer_id):
         volunteer.skills = ', '.join(selected_skills)
         db.session.commit()
         return redirect(url_for('volunteer'))
-
+    
     all_skills = [
         "event planning", "logistics", "social media", "marketing",
         "data entry", "excel", "public speaking", "networking"
