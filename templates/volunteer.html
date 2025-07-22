@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Volunteer Portal</h2>
+<form method="POST">
+  <div class="mb-3">
+    <label>Name</label>
+    <input type="text" name="name" class="form-control" required>
+  </div>
+  <div class="mb-3">
+    <label>Email</label>
+    <input type="email" name="email" class="form-control" required>
+  </div>
+  <div class="mb-3">
+    <label>Select Your Skills (hold Cmd/Ctrl for multiple)</label>
+    <select name="skills" class="form-select" multiple required>
+      <option value="event planning">Event Planning</option>
+      <option value="logistics">Logistics</option>
+      <option value="social media">Social Media</option>
+      <option value="marketing">Marketing</option>
+      <option value="data entry">Data Entry</option>
+      <option value="excel">Excel</option>
+      <option value="public speaking">Public Speaking</option>
+      <option value="networking">Networking</option>
+    </select>
+  </div>
+  <button class="btn btn-primary">Submit</button>
+</form>
+<hr>
+<h4>Existing Volunteers</h4>
+<ul class="list-group">
+  {% for v in volunteers %}
+    <li class="list-group-item">
+      {{ v.name }} – {{ v.skills }}
+      <a href="/edit-volunteer/{{ v.id }}" class="btn btn-sm btn-warning">Edit</a>
+      <a href="/delete-volunteer/{{ v.id }}" class="btn btn-sm btn-danger"
+         onclick="return confirm('Are you sure you want to delete this volunteer?')">
+        Delete
+      </a>
+    </li>
+  {% endfor %}
+</ul>
+{% endblock %}

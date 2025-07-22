@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Edit Volunteer</h2>
+<form method="POST">
+  <div class="mb-3">
+    <label>Name</label>
+    <input type="text" name="name" class="form-control" value="{{ volunteer.name }}" required>
+  </div>
+  <div class="mb-3">
+    <label>Email</label>
+    <input type="email" name="email" class="form-control" value="{{ volunteer.email }}" required>
+  </div>
+  <div class="mb-3">
+    <label>Select Your Skills</label>
+    <select name="skills" class="form-select" multiple required>
+      {% for skill in all_skills %}
+        <option value="{{ skill }}" {% if skill in selected_skills %}selected{% endif %}>
+          {{ skill }}
+        </option>
+      {% endfor %}
+    </select>
+  </div>
+  <button class="btn btn-primary">Save Changes</button>
+  <a href="/volunteer" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

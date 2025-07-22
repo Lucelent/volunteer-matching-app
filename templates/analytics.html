@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Analytics Summary</h1>
+
+<p><strong>Total Volunteers:</strong> {{ total_volunteers }}</p>
+<p><strong>Total Roles:</strong> {{ total_roles }}</p>
+
+<h2>Skill Counts:</h2>
+<ul>
+  {% for skill, count in skill_count.items() %}
+    <li>{{ skill }}: {{ count }}</li>
+  {% endfor %}
+</ul>
+
+<a href="{{ url_for('download_csv') }}" class="btn btn-primary mb-3">Download Volunteers CSV</a>
+
+<h2>Skill Distribution Histogram</h2>
+<img src="data:image/png;base64,{{ plot_url_histogram }}" alt="Skill Histogram" class="img-fluid mb-4">
+
+<h2>Skill Co-occurrence Heatmap</h2>
+<img src="data:image/png;base64,{{ plot_url_heatmap }}" alt="Skill Heatmap" class="img-fluid">
+
+{% endblock %}
