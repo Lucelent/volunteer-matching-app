@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for
 from models import db, Volunteer, Role, Placement, match_volunteer_to_roles
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'https://uhbfokflpihnblhrsume.supabase.co'  # Supabase DB URI
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db.init_app(app)
