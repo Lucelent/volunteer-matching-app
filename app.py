@@ -94,7 +94,7 @@ def seed_roles():
     for r in sample_roles:
         db.session.add(Role(name=r[0], required_skills=r[1]))
     db.session.commit()
-    return "Roles seeded! Go back to /hr-dashboard"
+    return redirect(url_for('hr_dashboard'))
 
 if __name__ == "__main__":
     app.run(debug=True)
